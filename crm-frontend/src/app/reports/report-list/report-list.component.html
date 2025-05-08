@@ -1,0 +1,71 @@
+<div class="bg-white shadow-md rounded-lg overflow-hidden p-6">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+      <h2 class="text-lg font-semibold">Rapports</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div *ngFor="let report of reports" class="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+        <div class="p-5">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-semibold text-gray-900">{{ report.title }}</h3>
+            <span [ngClass]="getTypeClass(report.type)" class="px-2 py-1 text-xs font-semibold rounded-full">
+              {{ report.type }}
+            </span>
+          </div>
+          
+          <p class="text-gray-600 mb-4">{{ report.description }}</p>
+          
+          <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
+            <span class="text-sm text-gray-500">Mise à jour: {{ getFormattedDate(report.lastUpdated) }}</span>
+            
+            <div>
+              <button class="text-primary-600 hover:text-primary-800 mr-3 text-sm">
+                <svg class="w-4 h-4 mr-1 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+                Voir
+              </button>
+              
+              <button class="text-gray-600 hover:text-gray-800 text-sm">
+                <svg class="w-4 h-4 mr-1 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                </svg>
+                Télécharger
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mt-8">
+      <h3 class="text-lg font-semibold mb-4">Créer un nouveau rapport</h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="border border-gray-200 rounded-lg p-5 text-center hover:border-primary-500 hover:shadow-md transition-all cursor-pointer">
+          <svg class="w-12 h-12 mx-auto text-primary-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+          <h4 class="text-lg font-medium mb-2">Rapport de vente</h4>
+          <p class="text-gray-600 text-sm">Créer un nouveau rapport d'analyse des ventes par période, par produit ou par région.</p>
+        </div>
+        
+        <div class="border border-gray-200 rounded-lg p-5 text-center hover:border-primary-500 hover:shadow-md transition-all cursor-pointer">
+          <svg class="w-12 h-12 mx-auto text-primary-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+          <h4 class="text-lg font-medium mb-2">Rapport clients</h4>
+          <p class="text-gray-600 text-sm">Créer un nouveau rapport d'analyse de la base clients, segmentation ou activité.</p>
+        </div>
+        
+        <div class="border border-gray-200 rounded-lg p-5 text-center hover:border-primary-500 hover:shadow-md transition-all cursor-pointer">
+          <svg class="w-12 h-12 mx-auto text-primary-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+          </svg>
+          <h4 class="text-lg font-medium mb-2">Rapport marketing</h4>
+          <p class="text-gray-600 text-sm">Créer un nouveau rapport d'analyse des campagnes marketing, leads et conversions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
