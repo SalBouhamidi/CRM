@@ -19,6 +19,9 @@
             "polyfills": [
               "zone.js"
             ],
+            "stylePreprocessorOptions": {
+      "includePaths": ["node_modules/"]
+    },
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -27,7 +30,8 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+             "src/styles.css",
+             "src/tailwind-output.css"
             ],
             "scripts": []
           },

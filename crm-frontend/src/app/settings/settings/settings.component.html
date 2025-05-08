@@ -1,0 +1,240 @@
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="p-6 border-b border-gray-200">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-semibold">Paramètres</h2>
+        <div class="flex space-x-4">
+          <button (click)="resetSettings()" class="btn-secondary text-sm">
+            Réinitialiser
+          </button>
+          <button (click)="saveSettings()" class="btn-primary text-sm">
+            Enregistrer
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="p-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Paramètres généraux -->
+        <div>
+          <h3 class="text-lg font-medium mb-4">Paramètres généraux</h3>
+          
+          <div class="space-y-4">
+            <div>
+              <label for="companyName" class="block text-sm font-medium text-gray-700 mb-1">
+                Nom de l'entreprise
+              </label>
+              <input
+                type="text"
+                id="companyName"
+                [(ngModel)]="settings.companyName"
+                class="form-input"
+              >
+            </div>
+            
+            <div>
+              <label for="language" class="block text-sm font-medium text-gray-700 mb-1">
+                Langue
+              </label>
+              <select
+                id="language"
+                [(ngModel)]="settings.language"
+                class="form-input"
+              >
+                <option value="fr">Français</option>
+                <option value="en">Anglais</option>
+                <option value="es">Espagnol</option>
+                <option value="de">Allemand</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="currency" class="block text-sm font-medium text-gray-700 mb-1">
+                Devise
+              </label>
+              <select
+                id="currency"
+                [(ngModel)]="settings.currency"
+                class="form-input"
+              >
+                <option value="EUR">Euro (€)</option>
+                <option value="USD">Dollar américain ($)</option>
+                <option value="GBP">Livre sterling (£)</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="dateFormat" class="block text-sm font-medium text-gray-700 mb-1">
+                Format de date
+              </label>
+              <select
+                id="dateFormat"
+                [(ngModel)]="settings.dateFormat"
+                class="form-input"
+              >
+                <option value="DD/MM/YYYY">JJ/MM/AAAA</option>
+                <option value="MM/DD/YYYY">MM/JJ/AAAA</option>
+                <option value="YYYY-MM-DD">AAAA-MM-JJ</option>
+              </select>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-medium mt-8 mb-4">Notifications</h3>
+          
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="notifEmail"
+                [(ngModel)]="settings.notifications.email"
+                class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+              >
+              <label for="notifEmail" class="ml-2 block text-sm text-gray-700">
+                Recevoir les notifications par email
+              </label>
+            </div>
+            
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="notifBrowser"
+                [(ngModel)]="settings.notifications.browser"
+                class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+              >
+              <label for="notifBrowser" class="ml-2 block text-sm text-gray-700">
+                Afficher les notifications dans le navigateur
+              </label>
+            </div>
+            
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="notifTasks"
+                [(ngModel)]="settings.notifications.tasks"
+                class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+              >
+              <label for="notifTasks" class="ml-2 block text-sm text-gray-700">
+                M'avertir des nouvelles tâches assignées
+              </label>
+            </div>
+            
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="notifOpportunities"
+                [(ngModel)]="settings.notifications.opportunities"
+                class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+              >
+              <label for="notifOpportunities" class="ml-2 block text-sm text-gray-700">
+                M'avertir des nouvelles opportunités
+              </label>
+            </div>
+            
+            <div class="flex items-center">
+              <input
+                type="checkbox" id="notifNewCustomers"
+                [(ngModel)]="settings.notifications.newCustomers"
+                class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+              >
+              <label for="notifNewCustomers" class="ml-2 block text-sm text-gray-700">
+                M'avertir des nouveaux clients
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Paramètres avancés -->
+        <div>
+          <h3 class="text-lg font-medium mb-4">Importation et exportation</h3>
+          
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="autoBackup"
+                [(ngModel)]="settings.importExport.autoBackup"
+                class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+              >
+              <label for="autoBackup" class="ml-2 block text-sm text-gray-700">
+                Sauvegarder automatiquement les données
+              </label>
+            </div>
+            
+            <div>
+              <label for="backupFrequency" class="block text-sm font-medium text-gray-700 mb-1">
+                Fréquence de sauvegarde
+              </label>
+              <select
+                id="backupFrequency"
+                [(ngModel)]="settings.importExport.backupFrequency"
+                class="form-input"
+              >
+                <option value="hourly">Toutes les heures</option>
+                <option value="daily">Quotidienne</option>
+                <option value="weekly">Hebdomadaire</option>
+                <option value="monthly">Mensuelle</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="exportFormat" class="block text-sm font-medium text-gray-700 mb-1">
+                Format d'exportation par défaut
+              </label>
+              <select
+                id="exportFormat"
+                [(ngModel)]="settings.importExport.exportFormat"
+                class="form-input"
+              >
+                <option value="csv">CSV</option>
+                <option value="excel">Excel</option>
+                <option value="json">JSON</option>
+              </select>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-medium mt-8 mb-4">Pipeline de vente</h3>
+          
+          <div class="space-y-4">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="text-sm font-medium text-gray-700">Étapes du pipeline</h4>
+              <button (click)="addStage()" class="text-sm text-primary-600 hover:text-primary-800 flex items-center">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Ajouter
+              </button>
+            </div>
+            
+            <div class="bg-gray-50 rounded-lg p-4 space-y-2">
+              <div *ngFor="let stage of settings.salesPipeline.stages" class="flex items-center justify-between py-2 border-b border-gray-200 last:border-0">
+                <div class="flex items-center">
+                  <div class="w-4 h-4 rounded-full mr-3" [style.backgroundColor]="stage.color"></div>
+                  <span class="text-sm text-gray-800">{{ stage.name }}</span>
+                </div>
+                <button (click)="deleteStage(stage.id)" class="text-red-600 hover:text-red-800">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                  </svg>
+                </button>
+              </div>
+              
+              <div *ngIf="settings.salesPipeline.stages.length === 0" class="text-center py-2 text-sm text-gray-500">
+                Aucune étape définie.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-8 flex justify-end">
+        <div class="flex space-x-4">
+          <button (click)="resetSettings()" class="btn-secondary">
+            Réinitialiser
+          </button>
+          <button (click)="saveSettings()" class="btn-primary">
+            Enregistrer les paramètres
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
