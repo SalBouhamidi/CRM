@@ -1,0 +1,100 @@
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="p-6 border-b border-gray-200">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+        <h2 class="text-lg font-semibold">Opportunités de vente</h2>
+        <button (click)="addOpportunity()" class="btn-primary mt-3 md:mt-0 flex items-center justify-center">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          </svg>
+          Ajouter une opportunité
+        </button>
+      </div>
+      
+      <div class="relative mb-4">
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm" 
+          (input)="applyFilter()" 
+          placeholder="Rechercher une opportunité..." 
+          class="form-input pl-10"
+        >
+        <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+    </div>
+    
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Opportunité
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Client
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Valeur
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Étape
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Probabilité
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Date de clôture
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Responsable
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr *ngFor="let opportunity of filteredOpportunities">
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-sm font-medium text-gray-900">{{ opportunity.name }}</div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-sm text-gray-900">{{ opportunity.customer }}</div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{ opportunity.value }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span [ngClass]="getStageClass(opportunity.stage)" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
+                {{ opportunity.stage }}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{ opportunity.probability }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{ opportunity.expectedCloseDate | date:'dd/MM/yyyy' }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{ opportunity.assignedTo }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <button class="text-primary-600 hover:text-primary-800 mr-3">
+                Modifier
+              </button>
+              <button (click)="deleteOpportunity(opportunity.id)" class="text-red-600 hover:text-red-800">
+                Supprimer
+              </button>
+            </td>
+          </tr>
+          
+          <tr *ngIf="filteredOpportunities.length === 0">
+            <td colspan="8" class="px-6 py-4 text-center text-sm text-gray-500">
+              Aucune opportunité trouvée.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
