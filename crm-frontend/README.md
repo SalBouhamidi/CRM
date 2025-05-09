@@ -1,59 +1,116 @@
-# TestAnimations
+CRM Angular 19 - Documentation
+Aperçu du projet
+Ce projet est un système de gestion de la relation client (CRM) développé avec Angular 19 et Tailwind CSS. Il fournit une interface utilisateur moderne et responsive pour gérer les clients, les opportunités de vente, les tâches, et générer des rapports.
+Technologies utilisées
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
+Frontend : Angular 19
+Styles : Tailwind CSS
+Notifications : SweetAlert2
+Architecture : Composants autonomes (standalone)
+Authentification : Guard Angular avec stockage local
 
-## Development server
+Fonctionnalités
 
-To start a local development server, run:
+✅ Authentification utilisateur
+✅ Tableau de bord interactif
+✅ Gestion des clients
+✅ Suivi des opportunités de vente
+✅ Gestion des tâches
+✅ Génération de rapports
+✅ Administration des utilisateurs
+✅ Paramètres système
 
-```bash
-ng serve
-```
+Prérequis
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Node.js (v18 ou supérieur)
+npm (v8 ou supérieur)
+Angular CLI (v19)
 
-## Code scaffolding
+Installation
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Cloner le dépôt
+bashgit clone https://github.com/votre-utilisateur/crm-frontend.git
+cd crm-frontend
 
-```bash
-ng generate component component-name
-```
+Installer les dépendances
+bashnpm install
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Générer les styles Tailwind CSS
+bashnpm run tailwind:build
 
-```bash
-ng generate --help
-```
+Démarrer le serveur de développement
+bashnpm start
 
-## Building
+Accéder à l'application
+L'application sera accessible à l'adresse http://localhost:4200/
 
-To build the project run:
+Structure du projet
+src/
+├── app/
+│   ├── customers/            # Gestion des clients
+│   ├── dashboard/            # Tableau de bord
+│   ├── guards/               # Guards d'authentification
+│   ├── login/                # Page de connexion
+│   ├── opportunities/        # Gestion des opportunités
+│   ├── reports/              # Rapports et analyses
+│   ├── services/             # Services API et utilitaires
+│   ├── settings/             # Configuration du système
+│   ├── shared/               # Composants partagés
+│   │   ├── header/           # En-tête de l'application
+│   │   └── sidebar/          # Barre latérale de navigation
+│   ├── tasks/                # Gestion des tâches
+│   ├── users/                # Administration des utilisateurs
+│   ├── app.routes.ts         # Configuration des routes
+│   ├── app.config.ts         # Configuration de l'application
+│   └── app.component.ts      # Composant racine
+└── styles/
+    ├── tailwind-source.css   # Source des styles Tailwind
+    └── tailwind-output.css   # Styles Tailwind compilés
+Scripts disponibles
 
-```bash
-ng build
-```
+npm start : Génère les styles Tailwind et démarre le serveur de développement
+npm run build : Compile l'application pour la production
+npm run tailwind:build : Génère les styles Tailwind CSS
+npm run tailwind:watch : Surveille et régénère les styles Tailwind lors des modifications
+npm run dev : Exécute le serveur de développement avec auto-régénération des styles Tailwind
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Authentification
+Pour les besoins de développement, l'application utilise une authentification simulée avec stockage local. En production, vous devriez intégrer un backend d'authentification réel.
+Identifiants de démonstration :
 
-## Running unit tests
+Email : admin@example.com
+Mot de passe : password
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Personnalisation
+Thème Tailwind
+Vous pouvez personnaliser les couleurs et autres aspects du thème dans le fichier tailwind.config.js.
+Configuration de l'application
+Les paramètres de l'application peuvent être modifiés dans le fichier src/app/app.config.ts.
+Déploiement
+Pour déployer l'application en production :
 
-```bash
-ng test
-```
+Construire l'application :
+bashnpm run build
 
-## Running end-to-end tests
+Déployer le contenu du dossier dist/crm-frontend sur votre serveur web.
 
-For end-to-end (e2e) testing, run:
+Bonnes pratiques
 
-```bash
-ng e2e
-```
+Composants autonomes : Utilisez l'architecture de composants autonomes d'Angular 19 pour une meilleure modularité.
+Lazy loading : Les modules sont chargés à la demande pour améliorer les performances.
+Reactive Forms : Utilisez les formulaires réactifs pour la validation et la gestion d'état.
+Services : Centralisez la logique métier dans des services.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Contribution
 
-## Additional Resources
+Fork le projet
+Créez votre branche de fonctionnalité (git checkout -b feature/amazing-feature)
+Committez vos changements (git commit -m 'Add some amazing feature')
+Push vers la branche (git push origin feature/amazing-feature)
+Ouvrez une Pull Request
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Licence
+Ce projet est sous licence MIT.
+
+
+Développé avec ❤️ et ☕
