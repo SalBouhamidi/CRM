@@ -26,6 +26,6 @@ export class HeaderComponent {
     if (path.includes('reports')) return 'Rapports';
     if (path.includes('users')) return 'Utilisateurs';
     if (path.includes('settings')) return 'Paramètres';
-    return 'CRM System';
+    return 'CRM Entreprise';
   }
 }

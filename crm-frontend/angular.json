@@ -3,9 +3,36 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "crm-frontend": {
+    "test-animations": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "inlineTemplate": true,
+          "inlineStyle": true,
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true 
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,15 +40,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/crm-frontend",
+            "outputPath": "dist/test-animations",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "stylePreprocessorOptions": {
-      "includePaths": ["node_modules/"]
-    },
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -30,8 +54,8 @@
               }
             ],
             "styles": [
-             "src/styles.css",
-             "src/tailwind-output.css"
+              "src/styles.css",
+              "src/tailwind-output.css"
             ],
             "scripts": []
           },
@@ -63,36 +87,16 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "crm-frontend:build:production"
+              "buildTarget": "test-animations:build:production"
             },
             "development": {
-              "buildTarget": "crm-frontend:build:development"
+              "buildTarget": "test-animations:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
-          }
         }
       }
     }

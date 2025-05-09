@@ -1,8 +1,13 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
+import { loginGuard } from './guards/login.guard'; // Import du nouveau guard
 
 export const routes: Routes = [
-  { path: 'login', loadComponent: () => import('./login/login.component').then(c => c.LoginComponent) },
+  { 
+    path: 'login', 
+    canActivate: [loginGuard], // Ajout du guard pour la page de connexion
+    loadComponent: () => import('./login/login.component').then(c => c.LoginComponent) 
+  },
   { 
     path: '', 
     canActivate: [authGuard],
