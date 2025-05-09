@@ -1,125 +1,116 @@
-# Guide d'installation et d'utilisation du CRM
+CRM Angular 19 - Documentation
+Aperçu du projet
+Ce projet est un système de gestion de la relation client (CRM) développé avec Angular 19 et Tailwind CSS. Il fournit une interface utilisateur moderne et responsive pour gérer les clients, les opportunités de vente, les tâches, et générer des rapports.
+Technologies utilisées
 
-Ce guide vous explique comment installer et exécuter le projet CRM développé avec Angular 19 et Tailwind CSS.
+Frontend : Angular 19
+Styles : Tailwind CSS
+Notifications : SweetAlert2
+Architecture : Composants autonomes (standalone)
+Authentification : Guard Angular avec stockage local
 
-## Prérequis
+Fonctionnalités
 
-- Node.js (version 18 ou supérieure)
-- npm (version 9 ou supérieure)
-- Angular CLI (version 19)
+✅ Authentification utilisateur
+✅ Tableau de bord interactif
+✅ Gestion des clients
+✅ Suivi des opportunités de vente
+✅ Gestion des tâches
+✅ Génération de rapports
+✅ Administration des utilisateurs
+✅ Paramètres système
 
-## Installation
+Prérequis
 
-1. Installez Angular CLI globalement si ce n'est pas déjà fait :
+Node.js (v18 ou supérieur)
+npm (v8 ou supérieur)
+Angular CLI (v19)
 
-```bash
-npm install -g @angular/cli
-```
+Installation
 
-2. Créez un nouveau projet Angular en mode standalone :
+Cloner le dépôt
+bashgit clone https://github.com/votre-utilisateur/crm-frontend.git
+cd crm-frontend
 
-```bash
-ng new crm-project --standalone --routing --style=css
-cd crm-project
-```
+Installer les dépendances
+bashnpm install
 
-3. Installez Tailwind CSS :
+Générer les styles Tailwind CSS
+bashnpm run tailwind:build
 
-```bash
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init
-```
+Démarrer le serveur de développement
+bashnpm start
 
-4. Configurez Tailwind CSS en modifiant le fichier `tailwind.config.js` avec le contenu fourni.
+Accéder à l'application
+L'application sera accessible à l'adresse http://localhost:4200/
 
-5. Modifiez le fichier `src/styles.css` pour inclure les directives Tailwind et les classes personnalisées.
-
-6. Installez SweetAlert2 pour les notifications :
-
-```bash
-npm install sweetalert2
-```
-
-7. Copiez tous les fichiers fournis dans leurs dossiers respectifs.
-
-## Structure du projet
-
-Le projet suit une architecture par fonctionnalité avec des composants autonomes (standalone) :
-
-```
+Structure du projet
 src/
 ├── app/
-│   ├── customers/           # Gestion des clients
-│   ├── dashboard/           # Tableau de bord
-│   ├── login/               # Page de connexion
-│   ├── opportunities/       # Gestion des opportunités de vente
-│   ├── reports/             # Rapports
-│   ├── settings/            # Paramètres
-│   ├── shared/              # Composants partagés (header, sidebar)
-│   ├── tasks/               # Gestion des tâches
-│   ├── users/               # Gestion des utilisateurs
-│   ├── guards/              # Garde d'authentification
-│   ├── services/            # Services (auth, etc.)
-│   ├── app.component.ts     # Composant racine
-│   ├── app.component.html   # Template du composant racine
-│   ├── app.routes.ts        # Configuration des routes
-│   └── app.config.ts        # Configuration de l'application
-└── ...
-```
+│   ├── customers/            # Gestion des clients
+│   ├── dashboard/            # Tableau de bord
+│   ├── guards/               # Guards d'authentification
+│   ├── login/                # Page de connexion
+│   ├── opportunities/        # Gestion des opportunités
+│   ├── reports/              # Rapports et analyses
+│   ├── services/             # Services API et utilitaires
+│   ├── settings/             # Configuration du système
+│   ├── shared/               # Composants partagés
+│   │   ├── header/           # En-tête de l'application
+│   │   └── sidebar/          # Barre latérale de navigation
+│   ├── tasks/                # Gestion des tâches
+│   ├── users/                # Administration des utilisateurs
+│   ├── app.routes.ts         # Configuration des routes
+│   ├── app.config.ts         # Configuration de l'application
+│   └── app.component.ts      # Composant racine
+└── styles/
+    ├── tailwind-source.css   # Source des styles Tailwind
+    └── tailwind-output.css   # Styles Tailwind compilés
+Scripts disponibles
 
-## Fonctionnalités implémentées
+npm start : Génère les styles Tailwind et démarre le serveur de développement
+npm run build : Compile l'application pour la production
+npm run tailwind:build : Génère les styles Tailwind CSS
+npm run tailwind:watch : Surveille et régénère les styles Tailwind lors des modifications
+npm run dev : Exécute le serveur de développement avec auto-régénération des styles Tailwind
 
-- **Authentification** : Connexion/déconnexion avec système de garde pour protéger les routes
-- **Tableau de bord** : Vue d'ensemble avec statistiques, graphiques et données récentes
-- **Gestion des clients** : Liste, détails, ajout, modification et suppression
-- **Gestion des opportunités de vente** : Suivi des opportunités de vente
-- **Gestion des tâches** : Organisation et suivi des tâches
-- **Rapports** : Visualisation et analyse des données
-- **Gestion des utilisateurs** : Administration des utilisateurs du système
-- **Paramètres** : Configuration du système
+Authentification
+Pour les besoins de développement, l'application utilise une authentification simulée avec stockage local. En production, vous devriez intégrer un backend d'authentification réel.
+Identifiants de démonstration :
 
-## Exécution du projet
+Email : admin@example.com
+Mot de passe : password
 
-Pour lancer le projet en mode développement :
+Personnalisation
+Thème Tailwind
+Vous pouvez personnaliser les couleurs et autres aspects du thème dans le fichier tailwind.config.js.
+Configuration de l'application
+Les paramètres de l'application peuvent être modifiés dans le fichier src/app/app.config.ts.
+Déploiement
+Pour déployer l'application en production :
 
-```bash
-ng serve
-```
+Construire l'application :
+bashnpm run build
 
-Ouvrez votre navigateur et accédez à `http://localhost:4200`.
+Déployer le contenu du dossier dist/crm-frontend sur votre serveur web.
 
-## Identifiants de connexion (démo)
+Bonnes pratiques
 
-- **Email** : admin@example.com
-- **Mot de passe** : password
+Composants autonomes : Utilisez l'architecture de composants autonomes d'Angular 19 pour une meilleure modularité.
+Lazy loading : Les modules sont chargés à la demande pour améliorer les performances.
+Reactive Forms : Utilisez les formulaires réactifs pour la validation et la gestion d'état.
+Services : Centralisez la logique métier dans des services.
 
-## Personnalisation
+Contribution
 
-Pour modifier les couleurs principales de l'application, vous pouvez ajuster les valeurs dans le fichier `tailwind.config.js` :
+Fork le projet
+Créez votre branche de fonctionnalité (git checkout -b feature/amazing-feature)
+Committez vos changements (git commit -m 'Add some amazing feature')
+Push vers la branche (git push origin feature/amazing-feature)
+Ouvrez une Pull Request
 
-```javascript
-theme: {
-  extend: {
-    colors: {
-      primary: {
-        // Modifiez ces valeurs pour changer la couleur principale
-      },
-    },
-  },
-},
-```
+Licence
+Ce projet est sous licence MIT.
 
-## Construction pour la production
 
-Pour construire l'application pour la production :
-
-```bash
-ng build --production
-```
-
-Les fichiers générés seront stockés dans le dossier `dist/`.
-
-## Notes supplémentaires
-
-- Ce projet utilise des données statiques pour la démonstration. Dans un environnement de production, vous devriez implémenter des appels API vers un backend réel.
-- Les fonctionnalités d'import/export, de graphiques en temps réel et d'autres fonctionnalités avancées nécessiteraient des bibliothèques supplémentaires.
+Développé avec ❤️ et ☕
