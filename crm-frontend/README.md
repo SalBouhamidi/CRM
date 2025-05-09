@@ -1,125 +1,59 @@
-# Guide d'installation et d'utilisation du CRM
+# TestAnimations
 
-Ce guide vous explique comment installer et exécuter le projet CRM développé avec Angular 19 et Tailwind CSS.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
 
-## Prérequis
+## Development server
 
-- Node.js (version 18 ou supérieure)
-- npm (version 9 ou supérieure)
-- Angular CLI (version 19)
-
-## Installation
-
-1. Installez Angular CLI globalement si ce n'est pas déjà fait :
-
-```bash
-npm install -g @angular/cli
-```
-
-2. Créez un nouveau projet Angular en mode standalone :
-
-```bash
-ng new crm-project --standalone --routing --style=css
-cd crm-project
-```
-
-3. Installez Tailwind CSS :
-
-```bash
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init
-```
-
-4. Configurez Tailwind CSS en modifiant le fichier `tailwind.config.js` avec le contenu fourni.
-
-5. Modifiez le fichier `src/styles.css` pour inclure les directives Tailwind et les classes personnalisées.
-
-6. Installez SweetAlert2 pour les notifications :
-
-```bash
-npm install sweetalert2
-```
-
-7. Copiez tous les fichiers fournis dans leurs dossiers respectifs.
-
-## Structure du projet
-
-Le projet suit une architecture par fonctionnalité avec des composants autonomes (standalone) :
-
-```
-src/
-├── app/
-│   ├── customers/           # Gestion des clients
-│   ├── dashboard/           # Tableau de bord
-│   ├── login/               # Page de connexion
-│   ├── opportunities/       # Gestion des opportunités de vente
-│   ├── reports/             # Rapports
-│   ├── settings/            # Paramètres
-│   ├── shared/              # Composants partagés (header, sidebar)
-│   ├── tasks/               # Gestion des tâches
-│   ├── users/               # Gestion des utilisateurs
-│   ├── guards/              # Garde d'authentification
-│   ├── services/            # Services (auth, etc.)
-│   ├── app.component.ts     # Composant racine
-│   ├── app.component.html   # Template du composant racine
-│   ├── app.routes.ts        # Configuration des routes
-│   └── app.config.ts        # Configuration de l'application
-└── ...
-```
-
-## Fonctionnalités implémentées
-
-- **Authentification** : Connexion/déconnexion avec système de garde pour protéger les routes
-- **Tableau de bord** : Vue d'ensemble avec statistiques, graphiques et données récentes
-- **Gestion des clients** : Liste, détails, ajout, modification et suppression
-- **Gestion des opportunités de vente** : Suivi des opportunités de vente
-- **Gestion des tâches** : Organisation et suivi des tâches
-- **Rapports** : Visualisation et analyse des données
-- **Gestion des utilisateurs** : Administration des utilisateurs du système
-- **Paramètres** : Configuration du système
-
-## Exécution du projet
-
-Pour lancer le projet en mode développement :
+To start a local development server, run:
 
 ```bash
 ng serve
 ```
 
-Ouvrez votre navigateur et accédez à `http://localhost:4200`.
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Identifiants de connexion (démo)
+## Code scaffolding
 
-- **Email** : admin@example.com
-- **Mot de passe** : password
-
-## Personnalisation
-
-Pour modifier les couleurs principales de l'application, vous pouvez ajuster les valeurs dans le fichier `tailwind.config.js` :
-
-```javascript
-theme: {
-  extend: {
-    colors: {
-      primary: {
-        // Modifiez ces valeurs pour changer la couleur principale
-      },
-    },
-  },
-},
-```
-
-## Construction pour la production
-
-Pour construire l'application pour la production :
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
 ```bash
-ng build --production
+ng generate component component-name
 ```
 
-Les fichiers générés seront stockés dans le dossier `dist/`.
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-## Notes supplémentaires
+```bash
+ng generate --help
+```
 
-- Ce projet utilise des données statiques pour la démonstration. Dans un environnement de production, vous devriez implémenter des appels API vers un backend réel.
-- Les fonctionnalités d'import/export, de graphiques en temps réel et d'autres fonctionnalités avancées nécessiteraient des bibliothèques supplémentaires.
+## Building
+
+To build the project run:
+
+```bash
+ng build
+```
+
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+
+```bash
+ng test
+```
+
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
