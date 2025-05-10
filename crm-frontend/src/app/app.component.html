@@ -1,14 +1,14 @@
-<div class="min-h-screen bg-gray-50 flex flex-col">
+<div class="min-h-screen bg-gray-100 flex flex-col">
   <!-- Header -->
   <app-header *ngIf="showSidebar"></app-header>
 
   <!-- Main content area with sidebar + content -->
   <div class="flex flex-1 overflow-hidden">
     <!-- Sidebar -->
-    <app-sidebar *ngIf="showSidebar" class="w-64 shrink-0"></app-sidebar>
+    <app-sidebar *ngIf="showSidebar" class="sm:w-64 shrink-0 max-sm:hidden"></app-sidebar>
 
     <!-- Main content -->
-    <div class="flex-1 overflow-auto p-6">
+    <div class="flex-1 overflow-auto p-6 ">
       <router-outlet></router-outlet>
     </div>
   </div>
