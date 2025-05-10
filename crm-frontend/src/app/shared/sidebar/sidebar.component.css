@@ -1,0 +1,11 @@
+.sidebar-item {
+    @apply flex items-center px-4 py-3 text-gray-700 rounded-md transition-colors duration-150;
+  }
+  
+  .sidebar-item:hover {
+    @apply bg-primary-50 text-blue-700;
+  }
+  
+  .sidebar-item.active {
+    @apply bg-blue-800 text-lime-50 font-medium;
+  }
