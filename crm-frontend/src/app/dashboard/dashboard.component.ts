@@ -186,12 +186,7 @@ export class DashboardComponent implements OnInit,AfterViewInit  {
     }
   }
   
-  recentCustomers = [
-    { id: 1, name: 'Société ABC', email: 'contact@abc.com', status: 'Actif', value: '5400€' },
-    { id: 2, name: 'Entreprise XYZ', email: 'info@xyz.com', status: 'En attente', value: '2800€' },
-    { id: 3, name: 'Société DEF', email: 'contact@def.com', status: 'Actif', value: '7200€' },
-    { id: 4, name: 'Entreprise GHI', email: 'info@ghi.com', status: 'Inactif', value: '1100€' }
-  ];
+
   
   recentTasks = [
     { id: 1, title: 'Appeler le client ABC', priority: 'Haute', dueDate: '2025-05-10', status: 'En cours' },
@@ -234,7 +229,6 @@ export class DashboardComponent implements OnInit,AfterViewInit  {
     { title: 'Revenus', value: '152K€', change: '+18%', icon: 'currency' }
   ];
 
-  // New KPI-related data
   dashboardKpi = [
     { label: 'Total Clients', value: this.dashboardData.totalClients.value, trend: this.dashboardData.totalClients.trend },
     { label: 'Ongoing Sales', value: this.dashboardData.ongoingSales.value, trend: this.dashboardData.ongoingSales.trend },
@@ -276,15 +270,14 @@ export class DashboardComponent implements OnInit,AfterViewInit  {
     }
   }
 
-  // Method to get trend class for KPI
   getTrendClass(trend: string): string {
     switch (trend) {
       case 'up':
-        return 'text-green-500'; // Green for up
+        return 'text-green-500'; 
       case 'down':
-        return 'text-red-500'; // Red for down
+        return 'text-red-500'; 
       case 'neutral':
-        return 'text-gray-500'; // Gray for neutral
+        return 'text-gray-500'; 
       default:
         return 'text-gray-500';
     }

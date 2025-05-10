@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Chart,registerables  } from 'chart.js';
+
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-report-list',
@@ -9,45 +12,107 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./report-list.component.css']
 })
 export class ReportListComponent implements OnInit {
-  reports = [
-    { 
-      id: 1, 
-      title: 'Performances de vente par région',
-      description: 'Analyse des performances de vente par région pour le trimestre en cours.',
-      type: 'Ventes',
-      lastUpdated: '2025-05-01'
-    },
-    { 
-      id: 2, 
-      title: 'Analyse des leads par source',
-      description: 'Répartition des leads par source d\'acquisition pour le mois en cours.',
-      type: 'Marketing',
-      lastUpdated: '2025-05-03'
-    },
-    { 
-      id: 3, 
-      title: 'Taux de conversion par représentant',
-      description: 'Taux de conversion des opportunités par représentant commercial.',
-      type: 'Ventes',
-      lastUpdated: '2025-04-28'
-    },
-    { 
-      id: 4, 
-      title: 'Prévisions de vente',
-      description: 'Prévisions de vente pour les 3 prochains mois basées sur le pipeline actuel.',
-      type: 'Ventes',
-      lastUpdated: '2025-04-25'
-    },
-    { 
-      id: 5, 
-      title: 'Analyse des clients par secteur',
-      description: 'Répartition des clients par secteur d\'activité et montant des ventes associées.',
-      type: 'Clients',
-      lastUpdated: '2025-04-20'
-    }
-  ];
-  
+  @ViewChild('pieChartRef') pieChartRef!: ElementRef;
+  @ViewChild('barChart') barChartRef!: ElementRef;
+  chart: any;
+
   constructor() { }
+  
+  ngAfterViewInit(): void {
+    this.createChart();
+    this.createSecondChart()
+  }
+  
+  createChart(): void {
+    const data = {
+      labels: ['En cours', 'Gagné', 'Perdu'],
+      datasets: [{
+        data: [45, 30, 25],
+        backgroundColor: [
+          '#3b82f6',  
+          '#10b981',  
+          '#ef4444'   
+        ],
+        borderWidth: 0,
+        hoverOffset: 4
+      }]
+    };
+  
+    this.chart = new Chart(this.pieChartRef.nativeElement, {
+      type: 'pie',
+      data: data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                return ` ${context.label}: ${context.raw}%`;
+              }
+            }
+          }
+        },
+        animation: {
+          animateRotate: true,
+          animateScale: true,
+          duration: 1000,
+          easing: 'easeOutQuart'
+        }
+      }
+    });
+  }
+
+
+
+  createSecondChart(): void {
+    const data = {
+      labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août'],
+      datasets: [{
+        label: 'Chiffre d\'affaires (k€)',
+        data: [12, 19, 24, 31, 42, 36, 45, 50],
+        backgroundColor: '#3b82f6',
+        borderColor: '#2563eb',
+        borderWidth: 1,
+        borderRadius: 4,
+        barThickness: 20,
+      }]
+    };
+
+    this.chart = new Chart(this.barChartRef.nativeElement, {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 1000,
+          easing: 'easeOutQuart'
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(0, 0, 0, 0.05)'
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    });
+  }
   
   ngOnInit(): void { }
   
