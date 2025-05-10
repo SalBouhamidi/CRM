@@ -1,7 +1,7 @@
-/* Importer le CSS généré par Tailwind */
-@import './tailwind-output.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Styles globaux supplémentaires */
 html, body {
   height: 100%;
 }

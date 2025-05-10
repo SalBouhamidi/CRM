@@ -13,14 +13,10 @@ import Swal from 'sweetalert2';
 })
 export class CustomerListComponent implements OnInit {
   customers = [
-    { id: 1, name: 'Société ABC', contact: 'Jean Dupont', email: 'contact@abc.com', phone: '01 23 45 67 89', status: 'Actif', value: '5400€' },
-    { id: 2, name: 'Entreprise XYZ', contact: 'Marie Martin', email: 'info@xyz.com', phone: '01 23 45 67 90', status: 'En attente', value: '2800€' },
-    { id: 3, name: 'Société DEF', contact: 'Pierre Durand', email: 'contact@def.com', phone: '01 23 45 67 91', status: 'Actif', value: '7200€' },
-    { id: 4, name: 'Entreprise GHI', contact: 'Sophie Dubois', email: 'info@ghi.com', phone: '01 23 45 67 92', status: 'Inactif', value: '1100€' },
-    { id: 5, name: 'Société JKL', contact: 'Philippe Leroy', email: 'contact@jkl.com', phone: '01 23 45 67 93', status: 'Actif', value: '3800€' },
-    { id: 6, name: 'Entreprise MNO', contact: 'Claire Moreau', email: 'info@mno.com', phone: '01 23 45 67 94', status: 'En attente', value: '4200€' },
-    { id: 7, name: 'Société PQR', contact: 'Thomas Bernard', email: 'contact@pqr.com', phone: '01 23 45 67 95', status: 'Actif', value: '6300€' },
-    { id: 8, name: 'Entreprise STU', contact: 'Nathalie Petit', email: 'info@stu.com', phone: '01 23 45 67 96', status: 'Inactif', value: '1900€' }
+    { id: 1, name: 'Société ABC', email: 'contact@abc.com',phone:"08293746483663", secteur: 'Technologie', commercial: 'Abdellatif' },
+    { id: 2, name: 'Entreprise XYZ', email: 'info@xyz.com',phone:"08293746483663", secteur: 'Marketing', commercial: 'Abdellatif' },
+    { id: 3, name: 'Société DEF', email: 'contact@def.com',phone:"08293746483663", secteur: 'Technologie', commercial: 'Mohammed' },
+    { id: 4, name: 'Entreprise GHI', email: 'info@ghi.com',phone:"08293746483663", secteur: 'Bien etre', commercial: 'Mohammed' }
   ];
   
   filteredCustomers = [...this.customers];
@@ -76,11 +72,10 @@ export class CustomerListComponent implements OnInit {
         const newCustomer = {
           id: this.customers.length + 1,
           name: result.value!.name,
-          contact: result.value!.contact,
           email: result.value!.email,
           phone: result.value!.phone,
-          status: 'Nouveau',
-          value: '0€'
+          secteur: 'Technologie',
+          commercial: 'Salima'
         };
         
         this.customers.unshift(newCustomer);
@@ -132,7 +127,7 @@ export class CustomerListComponent implements OnInit {
     const term = this.searchTerm.toLowerCase();
     this.filteredCustomers = this.customers.filter(customer => 
       customer.name.toLowerCase().includes(term) || 
-      customer.contact.toLowerCase().includes(term) || 
+      customer.secteur.toLowerCase().includes(term) || 
       customer.email.toLowerCase().includes(term) || 
       customer.phone.toLowerCase().includes(term)
     );
