@@ -1,126 +1,188 @@
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-    <div *ngFor="let stat of stats" class="bg-white rounded-lg shadow-md p-6">
-      <div class="flex items-center justify-between">
+<div class="animate-fade-in ">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 ">
+    <h1 class="text-2xl font-bold text-gray-800 mb-4 md:mb-0">Tableau de bord</h1>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 ">
+    <div
+      class="card metric-card hover:translate-y-[-2px] transition-transform duration-200 bg-white rounded p-5 shadow-lg border-1">
+      <div class="flex justify-between items-start">
         <div>
-          <p class="text-sm font-medium text-gray-500">{{ stat.title }}</p>
-          <p class="text-2xl font-semibold mt-1">{{ stat.value }}</p>
+          <h3 class="text-sm font-medium text-gray-500 mb-1">Total Clients</h3>
+          <p class="text-2xl font-bold">{{ dashboardData.totalClients.value }}</p>
         </div>
-        <div [ngClass]="stat.change.includes('+') ? 'text-green-500' : 'text-red-500'" class="text-sm font-medium">
-          {{ stat.change }}
+        <div [ngClass]="getTrendClass(dashboardData.totalClients.trend)"
+          class="bg-green-100 rounded-l-xl rounded-r-xl px-2">
+          +12%
         </div>
+
       </div>
     </div>
+
+
+    <div
+      class="card metric-card hover:translate-y-[-2px] transition-transform duration-200 bg-white rounded p-5 shadow-lg border-1">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-sm font-medium text-gray-500 mb-1">Ventes en cours</h3>
+          <p class="text-2xl font-bold">{{ dashboardData.ongoingSales.value }}</p>
+        </div>
+        <div [ngClass]="getTrendClass(dashboardData.ongoingSales.trend)"
+          class="bg-green-100 rounded-l-xl rounded-r-xl px-2">
+          +05%
+        </div>
+
+      </div>
+    </div>
+
+
+    <div
+      class="card metric-card hover:translate-y-[-2px] transition-transform duration-200 bg-white rounded p-5 shadow-lg border-1">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-sm font-medium text-gray-500 mb-1">CA Prévisionnel</h3>
+          <p class="text-2xl font-bold">{{ dashboardData.projectedRevenue.value }}</p>
+        </div>
+        <div [ngClass]="getTrendClass(dashboardData.projectedRevenue.trend)"
+          class="bg-green-100 rounded-l-xl rounded-r-xl px-2">
+          +10%
+        </div>
+
+      </div>
+    </div>
+
+    <div
+      class="card metric-card hover:translate-y-[-2px] transition-transform duration-200 bg-white rounded p-5 shadow-lg border-1">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-sm font-medium text-gray-500 mb-1">Tâches à réaliser</h3>
+          <p class="text-2xl font-bold">{{ dashboardData.tasksToComplete.value }}</p>
+        </div>
+        <div [ngClass]="getTrendClass(dashboardData.tasksToComplete.trend)"
+          class="bg-red-100 rounded-l-xl rounded-r-xl px-2">
+          -08%
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+
   </div>
-  
+
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-    <div class="bg-white rounded-lg shadow-md p-6">
-      <h2 class="text-lg font-semibold mb-4">Performances de vente</h2>
-      <div class="h-60">
-        <!-- Sales chart would go here -->
-        <div class="h-full w-full flex items-center justify-center bg-gray-50 rounded">
-          <p class="text-gray-500">Graphique des ventes mensuelles</p>
-        </div>
+    <div class="card flex flex-col h-full">
+      <h2 class="text-lg font-medium mb-4">Chiffre d'affaires par mois</h2>
+      <div class="chart-container bg-white p-4 rounded-xl shadow-xl flex-1 h-[400px]">
+        <canvas #barChart></canvas>
       </div>
     </div>
-    
-    <div class="bg-white rounded-lg shadow-md p-6">
-      <h2 class="text-lg font-semibold mb-4">Sources de leads</h2>
-      <div class="h-60">
-        <!-- Lead sources chart would go here -->
-        <div class="h-full w-full flex items-center justify-center bg-gray-50 rounded">
-          <p class="text-gray-500">Graphique des sources de leads</p>
+
+    <div class="card flex flex-col h-full">
+      <h2 class="text-lg font-medium mb-4">Répartition des opportunités</h2>
+      <div
+        class="chart-container bg-white p-4 rounded-xl shadow-xl flex-1 flex-col h-[400px] flex justify-center items-center">
+        <div class="w-full md:w-3/4 h-full">
+          <canvas #pieChartRef class="h-full w-full"></canvas>
+        </div>
+        <div>
+          <div class="w-full mt-4">
+            <div class="flex justify-center gap-4">
+              <div class="flex items-center">
+                <div class="w-4 h-4 rounded bg-blue-500 mr-2"></div>
+                <span class="text-sm">En cours (45%)</span>
+              </div>
+              <div class="flex items-center">
+                <div class="w-4 h-4 rounded bg-green-500 mr-2"></div>
+                <span class="text-sm">Gagné (30%)</span>
+              </div>
+              <div class="flex items-center">
+                <div class="w-4 h-4 rounded bg-red-500 mr-2"></div>
+                <span class="text-sm">Perdu (25%)</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+
     </div>
   </div>
-  
+
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-    <div class="bg-white rounded-lg shadow-md p-6">
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-semibold">Clients récents</h2>
-        <a routerLink="/customers" class="text-sm text-primary-600 hover:text-primary-700">Voir tout</a>
+    <div class="card h-full">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-medium">Tâches récentes</h2>
       </div>
-      
-      <div class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
-            <tr>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Client
-              </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Statut
-              </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Valeur
-              </th>
-            </tr>
-          </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
-            <tr *ngFor="let customer of recentCustomers">
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm font-medium text-gray-900">{{ customer.name }}</div>
-                <div class="text-sm text-gray-500">{{ customer.email }}</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span [ngClass]="getStatusClass(customer.status)" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
-                  {{ customer.status }}
-                </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {{ customer.value }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+
+      <div class="space-y-3">
+        <div *ngFor="let task of tasks; let i = index"
+          class="p-3 border border-gray-100 rounded-lg flex items-center justify-between transition-all hover:border-gray-200 animate-slide-in"
+          [style.animation-delay]="i * 0.1 + 's'">
+          <div class="flex items-center">
+            <div [ngClass]="{
+              'bg-green-500': task.completed,
+              'border-2 border-gray-300': !task.completed
+            }" class="h-5 w-5 rounded-full mr-3 flex items-center justify-center cursor-pointer">
+              <svg *ngIf="task.completed" xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
+                viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <p [ngClass]="{'line-through text-gray-500': task.completed, 'text-gray-800': !task.completed}">
+                {{ task.title }}
+              </p>
+              <p class="text-xs text-gray-500">Échéance: {{ task.dueDate }}</p>
+            </div>
+          </div>
+          <div [ngClass]="{
+            'bg-red-100 text-red-800': task.priority === 'high',
+            'bg-yellow-100 text-yellow-800': task.priority === 'medium',
+            'bg-blue-100 text-blue-800': task.priority === 'low'
+          }" class="px-2 py-1 rounded-full text-xs font-medium">
+            {{ getPriorityText(task.priority) }}
+          </div>
+        </div>
       </div>
     </div>
-    
-    <div class="bg-white rounded-lg shadow-md p-6">
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-semibold">Tâches récentes</h2>
-        <a routerLink="/tasks" class="text-sm text-primary-600 hover:text-primary-700">Voir tout</a>
+
+
+    <div class="card h-full">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-medium">Activités récentes</h2>
       </div>
-      
-      <div class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
-            <tr>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Tâche
-              </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Priorité
-              </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Échéance
-              </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Statut
-              </th>
-            </tr>
-          </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
-            <tr *ngFor="let task of recentTasks">
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm font-medium text-gray-900">{{ task.title }}</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div [ngClass]="getPriorityClass(task.priority)" class="text-sm font-medium">
-                  {{ task.priority }}
-                </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {{ task.dueDate | date:'dd/MM/yyyy' }}
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span [ngClass]="getStatusClass(task.status)" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
-                  {{ task.status }}
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+
+      <div class="space-y-4">
+        <div *ngFor="let activity of activities; let i = index" class="flex animate-slide-in"
+          [style.animation-delay]="i * 0.1 + 's'">
+          <div class="mr-4">
+            <div [ngClass]="{
+              'bg-green-100 text-green-600': activity.type === 'new_client',
+              'bg-blue-100 text-blue-600': activity.type === 'new_opportunity',
+              'bg-purple-100 text-purple-600': activity.type === 'closed_deal',
+              'bg-yellow-100 text-yellow-600': activity.type === 'task_completed'
+            }" class="h-8 w-8 rounded-full flex items-center justify-center">
+              <div [innerHTML]="getActivityIcon(activity.type)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center">
+              <span class="font-medium">{{ activity.user }}</span>
+              <span class="mx-1">{{ activity.action }}</span>
+            </div>
+            <p class="text-xs text-gray-500">Il y a {{ activity.timeAgo }}</p>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
+</div>

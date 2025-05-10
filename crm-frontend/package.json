@@ -3,13 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-
-     
-  "start": "npm run tailwind:build && ng serve",
-  "build": "npm run tailwind:build && ng build",
-  "watch": "ng build --watch --configuration development",
-  "test": "ng test",
-  "tailwind:build": "tailwindcss -i src/tailwind-source.css -o src/tailwind-output.css"
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +18,7 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
+    "chart.js": "^4.4.9",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.21.0",
     "tslib": "^2.3.0",
@@ -30,9 +28,9 @@
     "@angular-devkit/build-angular": "^19.2.10",
     "@angular/cli": "^19.2.10",
     "@angular/compiler-cli": "^19.2.0",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.6",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
     "typescript": "~5.7.2"
   }
 }
